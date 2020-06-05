@@ -18,6 +18,7 @@ class Publisher():
 
     def __init__(self, product_name):
 
+        # print('Initiaded')
         self.publish(product_name)
 
     def publish(self, product_name):
@@ -96,7 +97,6 @@ class Publisher():
         print('Done!')
 
     # also responsable for encryption and decryption
-
     def get_login_info(self):
 
         # email and password are encrypted saved into a hidden 'login_info.txt' file. also hidden through '.gitignore'
@@ -162,31 +162,37 @@ class Publisher():
             # text selector changes from plural to singular after the first image ( ??? ), so i had to improvise ...
             text_selector = '//*[text()="Adicionar foto"]'
 
-    def get_product_info(self, name='notebook'):
+    def get_product_info(self, product_name='notebook'):
 
-        product_info = ''
+        file = open('products_info.txt', 'r')
+        lines = file.readlines()
 
-        if (name == 'notebook'):
-            product_info = {
-                'title': 'Notebook lenovo x230',
-                'price': '1200',
-                'description': '''# - Notebook''',
-                'images': ['notebook_1.jpg', 'notebook_2.jpg']
-            }
+        for i in range(len(lines)):
+            lines[i] = lines[i].replace('{', '').replace('}', '')
+            lines[i] = lines[i].replace("'", '')
+            lines[i] = lines[i].split(', ')
 
-        elif (name == 'moletom'):
-            product_info = {
-                'title': 'Moletom algodao e poliester, muito confortavel',
-                'price': '60',
-                'description': '''# - Moletom''',
-                'images': ['moletom_1.jpg', 'moletom_2.jpg']
-            }
+            title = lines[i][0].split(': ')[1]
+            price = lines[i][1].split(': ')[1]
+            description = lines[i][2].split(': ')[1]
 
-        else:
-            raise 'Invalid product name!'
+            images = lines[i][3:]
+            for i in range(len(images)):
+                images[i] = images[i].replace('images: [', '')
+                images[i] = images[i].replace(']', '').strip()
 
-        return product_info
+            if (title == product_name):
+                return {
+                    'title': title,
+                    'price': price,
+                    'description': description,
+                    'images': images
+                }
+
+        raise 'Name not found!'
 
 
 if __name__ == '__main__':
-    Publisher(argv[1])
+    Publisher(' '.join(argv[1:]))
+    # publisher = Publisher('f')
+    # publisher.get_product_info('Notebook Lenovo')
