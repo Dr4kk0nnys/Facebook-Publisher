@@ -10,10 +10,17 @@ import base64
 from time import sleep
 from sys import argv
 
+# TODO: Add at least 5 more groups do the random group list
+# TODO: Once you've decided which product to publish, add it to this program
+
 
 class Publisher():
 
     def __init__(self, product_name):
+
+        self.publish(product_name)
+
+    def publish(self, product_name):
         # few options to make it prettier
         chrome_options = webdriver.ChromeOptions()
         # chrome_options.add_argument('--headless')
@@ -67,11 +74,11 @@ class Publisher():
         sleep(3)
 
         # clicking next ( go to group selection page )
-        self.webdriver.find_element_by_xpath(
-            '//div[@aria-label="Avançar"]').click()
+        next_group_selector = '//div[@aria-label="Avançar"]'
+        self.webdriver.find_element_by_xpath(next_group_selector).click()
 
         # wait for the group animation
-        sleep(2)
+        sleep(1.25)
 
         # clicking on every group
         groups = self.webdriver.find_elements_by_xpath('//img[@width="24"]')
@@ -82,13 +89,14 @@ class Publisher():
             groups[i].click()
 
         # publishing it
-        self.webdriver.find_element_by_xpath('//*[text()="Publicar"]').click()
+        # self.webdriver.find_element_by_xpath('//*[text()="Publicar"]').click()
 
         sleep(10)
 
         print('Done!')
 
     # also responsable for encryption and decryption
+
     def get_login_info(self):
 
         # email and password are encrypted saved into a hidden 'login_info.txt' file. also hidden through '.gitignore'
@@ -127,21 +135,20 @@ class Publisher():
 
     def type_product_info(self, product_info: {}):
 
-        elements = self.webdriver.find_elements_by_xpath(
-            '//input[@type="text"]')
+        # elements = [title, price]
+        elements_xpath = '//input[@type="text"]'
+        elements = self.webdriver.find_elements_by_xpath(elements_xpath)
 
-        # title
         elements[0].send_keys(product_info.get('title'))
-        # price
         elements[1].send_keys(product_info.get('price'))
 
-        # description
-        self.webdriver.find_element_by_xpath(
-            '//textarea').send_keys(product_info.get('description'))
+        description = self.webdriver.find_element_by_xpath('//textarea')
+        description.send_keys(product_info.get('description'))
 
         # images
         self.send_images(product_info.get('images'))
 
+    # perform all the clicks and operations, once the image_selector is open
     def send_images(self, images):
 
         text_selector = '//*[text()="Adicionar fotos"]'
