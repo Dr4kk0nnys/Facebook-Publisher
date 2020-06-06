@@ -166,36 +166,38 @@ class Publisher():
             text_selector = '//*[text()="Adicionar foto"]'
 
     def get_product_info(self, product_name='notebook'):
-        file = open('products_info.txt', 'r')
-        lines = file.readlines()
 
-        for i in range(len(lines)):
-            lines[i] = lines[i].replace('{', '').replace('}', '')
-            lines[i] = lines[i].replace("'", '')
-            lines[i] = lines[i].split(', ')
+        with open('products_info.txt', 'r') as file:
+            lines = file.readlines()
 
-            title = lines[i][0].split(': ')[1]
+            for i in range(len(lines)):
+                lines[i] = lines[i].replace('{', '').replace('}', '')
+                lines[i] = lines[i].replace("'", '')
+                lines[i] = lines[i].split(', ')
 
-            # title equals the name of the product we want to publish
-            if (title == product_name):
+                title = lines[i][0].split(': ')[1]
 
-                # proceed to get the rest of the information
-                price = lines[i][1].split(': ')[1]
-                description = lines[i][2].split(': ')[1].replace('\\n', '\n')
+                # title equals the name of the product we want to publish
+                if (title == product_name):
 
-                images = lines[i][3:]
-                for i in range(len(images)):
-                    images[i] = images[i].replace('images: [', '')
-                    images[i] = images[i].replace(']', '').strip()
+                    # proceed to get the rest of the information
+                    price = lines[i][1].split(': ')[1]
+                    description = lines[i][2].split(
+                        ': ')[1].replace('\\n', '\n')
 
-                return {
-                    'title': title,
-                    'price': price,
-                    'description': description,
-                    'images': images
-                }
+                    images = lines[i][3:]
+                    for i in range(len(images)):
+                        images[i] = images[i].replace('images: [', '')
+                        images[i] = images[i].replace(']', '').strip()
 
-        raise 'Name not found!'
+                    return {
+                        'title': title,
+                        'price': price,
+                        'description': description,
+                        'images': images
+                    }
+
+            raise 'Name not found!'
 
     def add_product_info_to_database(self):
 
