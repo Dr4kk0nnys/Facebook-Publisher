@@ -18,10 +18,16 @@ class Publisher():
 
     def __init__(self, product_name):
 
-        # print('Initiaded')
-        self.publish(product_name)
+        if (product_name == 'add_element'):
+            self.add_product_info_to_database()
+            return
 
-    def publish(self, product_name):
+        # product info got by the terminal argument
+        product = self.get_product_info(product_name)
+
+        self.publish(product)
+
+    def publish(self, product_info):
         # few options to make it prettier
         chrome_options = webdriver.ChromeOptions()
         # chrome_options.add_argument('--headless')
@@ -65,11 +71,8 @@ class Publisher():
         # wait for the 'Item a venda' selector
         self.wait_for_selector('//input[@aria-invalid="false"]', False)
 
-        # product info got by the terminal argument
-        product = self.get_product_info(product_name)
-
         # typing the product info ( title, price, ... ), the product info is an object
-        self.type_product_info(product)
+        self.type_product_info(product_info)
 
         # wait for everything to finish uploading
         sleep(3)
@@ -163,7 +166,6 @@ class Publisher():
             text_selector = '//*[text()="Adicionar foto"]'
 
     def get_product_info(self, product_name='notebook'):
-
         file = open('products_info.txt', 'r')
         lines = file.readlines()
 
@@ -173,15 +175,19 @@ class Publisher():
             lines[i] = lines[i].split(', ')
 
             title = lines[i][0].split(': ')[1]
-            price = lines[i][1].split(': ')[1]
-            description = lines[i][2].split(': ')[1]
 
-            images = lines[i][3:]
-            for i in range(len(images)):
-                images[i] = images[i].replace('images: [', '')
-                images[i] = images[i].replace(']', '').strip()
-
+            # title equals the name of the product we want to publish
             if (title == product_name):
+
+                # proceed to get the rest of the information
+                price = lines[i][1].split(': ')[1]
+                description = lines[i][2].split(': ')[1].replace('\\n', '\n')
+
+                images = lines[i][3:]
+                for i in range(len(images)):
+                    images[i] = images[i].replace('images: [', '')
+                    images[i] = images[i].replace(']', '').strip()
+
                 return {
                     'title': title,
                     'price': price,
@@ -191,8 +197,20 @@ class Publisher():
 
         raise 'Name not found!'
 
+    def add_product_info_to_database(self):
+
+        # ask the user input, and format's it in only one line
+        title = f"'title': '{input('Title: ').replace(':', '=')}'"
+        price = f"'price': '{input('Price: ')}'"
+        description = f"'description': '{input('Description: ').replace(':', '=')}'"
+        images = f"'images': ['{input('Images: ')}']"
+
+        with open('products_info.txt', 'a') as file:
+            query = '{' + f'{title}, {price}, {description}, {images}' + '}'
+            file.write(query + '\n')
+
 
 if __name__ == '__main__':
     Publisher(' '.join(argv[1:]))
     # publisher = Publisher('f')
-    # publisher.get_product_info('Notebook Lenovo')
+    # print(publisher.get_product_info('Notebook Lenovo'))
