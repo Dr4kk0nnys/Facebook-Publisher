@@ -2,8 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 
-from pyautogui import typewrite, click, press
-from pyautogui import locateCenterOnScreen
+from pyautogui import typewrite
 
 from random import randint
 import base64
