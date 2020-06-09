@@ -1,6 +1,1 @@
-{'title': 'Notebook Lenovo', 'price': '69', 'description': 'Notebook Lenovo', 'images': ['notebook_1.jpg', 'notebook_2.jpg']}
-{'title': 'Test title 2', 'price': '420', 'description': 'This is another fucking test so eat both of my ass', 'images': ['image_1.png', 'image_2.png', 'image_3.jpg']}
-{'title': 'This is a complete test', 'price': '69 420', 'description': 'This is a test', 'images': ['image_1.jpg, images_2.jpg, image_3.jpg']}
-{'title': 'This is another complete test', 'price': '420 69', 'description': 'This is a complete test again', 'images': ['image_1.png']}
-{'title': 'This is a test', 'price': '69', 'description': '# This is line 1 \n# This is line 2 \n# This is line 3', 'images': ['notebook_1.jpg, notebook_2.jpg']}
-{'title': 'Rodas agressivo para venda', 'price': '69', 'description': '# - Vende-se um Rodas muito agressivo \n# - Motivo de venda= Rodas se encontra em um estado selvagem \n# - Preco= Estamos pagando R$ 69 para quem retirar o Rodas da familia', 'images': ['notebook_1.jpg, notebook_2.jpg, notebook_3.jpg, notebook_4.jpg, notebook_5.jpg, notebook_6.jpg']}
+{'title': 'Moletom Manga Comprida de Excelente Qualidade Nova', 'price': '50', 'description': '# - Moletom Manga Comprida \n# - Moletom de Excelente Qualidade \n# - Tecido super macio e confortavel de usar \n# - Tecido de qualidade premium que nao solta quando lava', 'images': ['manga-longa_1.jpg, manga-longa_2.jpg, manga-longa_3.jpg']}

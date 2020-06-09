@@ -10,7 +10,6 @@ import base64
 from time import sleep
 from sys import argv
 
-# TODO: Add at least 5 more groups do the random group list
 # TODO: Once you've decided which product to publish, add it to this program
 
 
@@ -178,7 +177,7 @@ class Publisher():
                 title = lines[i][0].split(': ')[1]
 
                 # title equals the name of the product we want to publish
-                if (title == product_name):
+                if (product_name in title):
 
                     # proceed to get the rest of the information
                     price = lines[i][1].split(': ')[1]
