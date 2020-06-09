@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 
-from pyautogui import typewrite
+from pyautogui import typewrite, press
 
 from random import randint
 import base64
@@ -22,6 +22,7 @@ class Publisher():
 
         # product info got by the terminal argument
         product = self.get_product_info(product_name)
+        # get product info raises an exception if no product is found, and ends the program
 
         self.publish(product)
 
