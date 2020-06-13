@@ -9,6 +9,7 @@ import base64
 from time import sleep
 from sys import argv
 
+# TODO: Make it work on your OS, and add the .login_info ( already encrypted )
 # TODO: Once you've decided which product to publish, add it to this program
 
 
@@ -34,7 +35,7 @@ class Publisher():
         # chrome_options.add_argument('--log-level=OFF')
 
         # initialize the webdriver
-        self.webdriver = webdriver.Chrome(chrome_options=chrome_options)
+        self.webdriver = webdriver.Chrome(options=chrome_options)
 
         # go to facebook.com
         self.webdriver.get('https://www.facebook.com')
@@ -92,7 +93,7 @@ class Publisher():
             groups[i].click()
 
         # publishing it
-        # self.webdriver.find_element_by_xpath('//*[text()="Publicar"]').click()
+        self.webdriver.find_element_by_xpath('//*[text()="Publicar"]').click()
 
         sleep(10)
 
@@ -154,14 +155,25 @@ class Publisher():
     def send_images(self, images):
 
         text_selector = '//*[text()="Adicionar fotos"]'
-        for image in images:
+
+        for i, image in enumerate(images):
             self.webdriver.find_element_by_xpath(text_selector).click()
             sleep(2)
+
+            # first occurrence has to be setted up
+            if (i == 0):
+                press('left')
+                for i in range(7):
+                    press('down')
+                press('enter')
+                press('right')
+                press('enter')
+                sleep(1)
+
             typewrite(image)
             press('enter')
             sleep(2)
 
-            # text selector changes from plural to singular after the first image ( ??? ), so i had to improvise ...
             text_selector = '//*[text()="Adicionar foto"]'
 
     def get_product_info(self, product_name='notebook'):
