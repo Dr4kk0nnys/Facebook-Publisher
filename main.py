@@ -9,9 +9,6 @@ import base64
 from time import sleep
 from sys import argv
 
-# TODO: Make it work on your OS, and add the .login_info ( already encrypted )
-# TODO: Once you've decided which product to publish, add it to this program
-
 
 class Publisher():
 
@@ -148,7 +145,6 @@ class Publisher():
         description = self.webdriver.find_element_by_xpath('//textarea')
         description.send_keys(product_info.get('description'))
 
-        # images
         self.send_images(product_info.get('images'))
 
     # perform all the clicks and operations, once the image_selector is open
@@ -176,7 +172,10 @@ class Publisher():
 
             text_selector = '//*[text()="Adicionar foto"]'
 
-    def get_product_info(self, product_name='notebook'):
+    def get_product_info(self, product_name=''):
+
+        if (product_name == ''):
+            raise 'Invalid Name'
 
         with open('products_info.txt', 'r') as file:
             lines = file.readlines()
@@ -225,5 +224,3 @@ class Publisher():
 
 if __name__ == '__main__':
     Publisher(' '.join(argv[1:]))
-    # publisher = Publisher('f')
-    # print(publisher.get_product_info('Notebook Lenovo'))
