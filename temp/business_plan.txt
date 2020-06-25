@@ -45,6 +45,15 @@
 
         - Make sure they understand it publishes it in every selling group they are in
 
+    - Requirements:
+        - user must have a facebook account, designed for sales ( help it )
+        - user must be in at least one of the following 5 groups
+            1. Montes Claros Compra e Vende                     https://www.facebook.com/groups/432417496866854/?multi_permalinks=2910163659092213
+            2. Mercado Negro Montes Claros                      https://www.facebook.com/groups/mercadonegromontesclaros/?multi_permalinks=2703855546498747
+            3. Montes Claros Anuncios Compras Vendas Trocas     https://www.facebook.com/groups/424204217729696/?multi_permalinks=1723000857850019
+            4. Montes Claros Vendas                             https://www.facebook.com/groups/310280522400702/?multi_permalinks=3135459813216078
+            5. Vendas e Trocas Montes Claros                    https://www.facebook.com/groups/1634839360079018/?multi_permalinks=2767174246845518
+
 	- What you can say:
 	    - 'Hey, can i talk to the manager ? I have a business proposal in name of Social G, a software development enterprise'
 	    - 'Social G lanced a new software recently, that can bump your sells up to 50%'
