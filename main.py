@@ -45,9 +45,7 @@ class Publisher():
         email.send_keys(credentials.get('email'))
 
         password = self.webdriver.find_element_by_id('pass')
-        password.send_keys(credentials.get('password'))
-
-        self.webdriver.find_element_by_id('pass').send_keys(Keys.ENTER)
+        password.send_keys(credentials.get('password') + Keys.ENTER)
 
         # wait for the page to load
         self.wait_for_selector('//div[@aria-label="Facebook"]', False)
@@ -76,7 +74,7 @@ class Publisher():
 
         # clicking next ( go to group selection page )
         next_group_selector = '//div[@aria-label="Avançar"]'
-        self.webdriver.find_element_by_xpath(next_group_selector).click()
+        self.wait_for_selector(next_group_selector, True)
 
         # wait for the group animation
         sleep(1.25)
@@ -224,3 +222,4 @@ class Publisher():
 
 if __name__ == '__main__':
     Publisher(' '.join(argv[1:]))
+

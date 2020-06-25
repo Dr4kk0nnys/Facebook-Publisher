@@ -1,0 +1,53 @@
+1 How it's going to work:
+
+    * I won't give my code to the buyer *
+    * Monthly paying *
+    * It's going to run on my machine *
+
+    - Each client will have it's individual file ? Each client will have it's individual directory ?
+        -> Option 1:                -> Option 2:
+            client_1.py                 client_1
+            client_2.py                     -> main.py
+            client_3.py                 client_2
+            client_4.py                     -> main.py
+        
+        * Make a MAIN file with the main class holding all the executable functions, and make a sub-file ( with the name of the client )
+        in the sub file, add all the primary info ( email, password, title, description, images ... )
+
+    - Price:
+        Monthly: 
+            - R$ 70 per month
+                - 3 ads, 3 times a day
+            - R$ 120 per month
+                - 5 ads, 3 times a day
+            - R$ 180 per month
+                - 7 ads, 5 times a day
+
+        Annual: 
+            - R$ 60 per month  ( R$ 720 total )
+                - 3 ads, 3 times a day
+            - R$ 110 per month ( R$ 1320 total )
+                - 5 ads, 3 times a day
+            - R$ 160 per month ( R$ 1920 total )
+                - 7 ads, 5 times a day
+        
+        * I don't know yet about credit card *
+
+    - Apresentation:
+        - Make a video of the program working ( in case you don't have wifi )
+            - video_path = '/home/dr4kk0nnys/Apresentation.mkv'
+        - Show the average time of how long it takes to publish an add, then multiply it for the month and compare it against no time at all spent, using the program
+            
+            Average time: 3 ~ 5 minutes
+            * It takes 45 minutes a day, only to publish the ads ( each add takes: 3 min, 5 adds, 3 times a day )
+            * 15 minutes per session
+            * Monthly, it takes over 20 hours, only to publish it
+
+        - Make sure they understand it publishes it in every selling group they are in
+
+	- What you can say:
+	    - 'Hey, can i talk to the manager ? I have a business proposal in name of Social G, a software development enterprise'
+	    - 'Social G lanced a new software recently, that can bump your sells up to 50%'
+	    - 'It publishes the products you want to sell in every selling group you have on Facebook' 
+
+	* Mount a 'slide' apresentation *
